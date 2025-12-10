@@ -27,4 +27,26 @@ class Client(models.Model):
     def __str__(self):
         return f"{self.name} {self.email}"
 
+class Project(models.Model):
+    STATUS_CHOICES = [
+        ("planned", "Planned"),
+        ("in_progress", "In progress"),
+        ("on_hold", "On hold"),
+        ("done", "Done"),
+    ]
+
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="projects")
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    budget = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="planned")
+    start_date = models.DateField(null=True, blank=True)
+    due_date = models.DateField(null=True, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.title} for {self.client.name}"
+
 
