@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8002:8000"  # host:container
+    volumes:
+      - .:/app
+    env_file:
+      - .env
