@@ -222,3 +222,6 @@ __pycache__/
 
 # Kiti IDE / build failai
 *.xml
+
+# Django DB
+db.sqlite3
