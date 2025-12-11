@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+</head>
+<body>
+    <h1>Clients</h1>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Country</th>
+            <th>Status</th>
+            <th>Email</th>
+        </tr>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.company }}</td>
+            <td>{{ client.country }}</td>
+            <td>{{ client.get_status_display }}</td>
+            <td>{{ client.email }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No clients yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
