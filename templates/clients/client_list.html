@@ -17,7 +17,9 @@
         </tr>
         {% for client in clients %}
         <tr>
-            <td>{{ client.name }}</td>
+            <td>
+  <a href="{% url 'client_detail' client.pk %}">{{ client.name }}</a>
+</td>
             <td>{{ client.company }}</td>
             <td>{{ client.country }}</td>
             <td>{{ client.get_status_display }}</td>
