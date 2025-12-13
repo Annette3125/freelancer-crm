@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ client.name }}</title>
+</head>
+<body>
+    <h1>{{ client.name }}</h1>
+
+    {% if client.avatar_url %}
+        <img src="{{ client.avatar_url }}" alt="{{ client.name }}" width="120">
+    {% endif %}
+
+    <p><strong>Company:</strong> {{ client.company }}</p>
+    <p><strong>Country:</strong> {{ client.country }}</p>
+    <p><strong>Status:</strong> {{ client.get_status_display }}</p>
+    <p><strong>Email:</strong> {{ client.email }}</p>
+
+    {% if client.github_url %}
+        <p><strong>GitHub:</strong> <a href="{{ client.github_url }}" target="_blank">{{ client.github_url }}</a></p>
+    {% endif %}
+    {% if client.linkedin_url %}
+        <p><strong>LinkedIn:</strong> <a href="{{ client.linkedin_url }}" target="_blank">{{ client.linkedin_url }}</a></p>
+    {% endif %}
+    {% if client.website_url %}
+        <p><strong>Website:</strong> <a href="{{ client.website_url }}" target="_blank">{{ client.website_url }}</a></p>
+    {% endif %}
+
+    {% if client.notes %}
+        <p><strong>Notes:</strong> {{ client.notes }}</p>
+    {% endif %}
+
+    <h2>Projects</h2>
+    {% if projects %}
+        <ul>
+        {% for project in projects %}
+            <li>
+                <strong>{{ project.title }}</strong>
+                ({{ project.get_status_display }})
+                {% if project.budget %}
+                    – Budget: {{ project.budget }}
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No projects yet for this client.</p>
+    {% endif %}
+
+    <p><a href="{% url 'client_list' %}">← Back to clients</a></p>
+</body>
+</html>
