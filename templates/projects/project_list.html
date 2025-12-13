@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<body>
+    <h1>Projects</h1>
+
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Client</th>
+            <th>Status</th>
+            <th>Budget</th>
+            <th>Created</th>
+        </tr>
+        {% for project in projects %}
+        <tr>
+            <td>{{ project.title }}</td>
+            <td>
+                <a href="{% url 'client_detail' project.client.pk %}">
+                    {{ project.client.name }}
+                </a>
+            </td>
+            <td>{{ project.get_status_display }}</td>
+            <td>
+                {% if project.budget %}
+                    {{ project.budget }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>{{ project.created_at|date:"Y-m-d" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No projects yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{% url 'client_list' %}">← Back to clients</a></p>
+</body>
+</html>
