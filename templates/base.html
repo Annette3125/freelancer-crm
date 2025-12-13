@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Freelancer CRM{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Freelancer CRM</h1>
+        <nav>
+            <a href="{% url 'client_list' %}">Clients</a> |
+            <a href="{% url 'project_list' %}">Projects</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
