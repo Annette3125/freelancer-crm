@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{{ client.name }}</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}{{ client.name }}{% endblock %}
+
+{% block content %}
+
     <h1>{{ client.name }}</h1>
 
     {% if client.avatar_url %}
@@ -48,5 +47,5 @@
     {% endif %}
 
     <p><a href="{% url 'client_list' %}">← Back to clients</a></p>
-</body>
-</html>
+
+{% endblock %}
