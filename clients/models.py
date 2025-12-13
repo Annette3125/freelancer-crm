@@ -21,6 +21,11 @@ class Client(models.Model):
     )
     notes = models.TextField(blank=True)
 
+    avatar_url = models.URLField(blank=True)
+    github_url = models.URLField(blank=True)
+    linkedin_url = models.URLField(blank=True)
+    website_url = models.URLField(blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
