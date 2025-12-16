@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Client, Project
-from .forms import ClientForm
+from .forms import ClientForm, ProjectForm
 from django.shortcuts import render, get_object_or_404, redirect
 
 
@@ -35,4 +35,19 @@ def client_create(request):
         form = ClientForm()
 
     return render(request, "clients/client_form.html", {"form": form})
+
+
+def project_create(request):
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save()
+            # ČIA kol kas paprastai: grįžtam į projektų sąrašą
+            return redirect("project_list")
+    else:
+        form = ProjectForm()
+
+    return render(request, "projects/project_form.html", {"form": form})
+
+
 
