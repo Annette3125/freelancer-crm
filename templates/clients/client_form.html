@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}New Client{% endblock %}
+
+{% block content %}
+    <h2>New Client</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Save</button>
+    </form>
+
+    <p>
+        <a href="{% url 'client_list' %}">← Back to clients</a>
+    </p>
+{% endblock %}
