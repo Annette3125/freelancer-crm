@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client
+from .models import Client, Project
 
 
 
@@ -19,3 +19,17 @@ class ClientForm(forms.ModelForm):
             "website_url",
             "notes",
         ]
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = [
+            "client",
+            "title",
+            "description",
+            "budget",
+            "status",
+            "start_date",
+            "due_date",
+        ]
+
