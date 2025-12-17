@@ -30,6 +30,11 @@
     {% endif %}
 
     <h2>Projects</h2>
+<p>
+    <a href="{% url 'project_create_for_client' client.pk %}">
+        + Add project for this client
+    </a>
+</p>
     {% if projects %}
         <ul>
         {% for project in projects %}
