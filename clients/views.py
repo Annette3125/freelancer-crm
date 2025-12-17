@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+
 from .models import Client, Project
 from .forms import ClientForm, ProjectForm
 from django.shortcuts import render, get_object_or_404, redirect
@@ -50,4 +50,22 @@ def project_create(request):
     return render(request, "projects/project_form.html", {"form": form})
 
 
+def project_create_for_client(request, client_pk):
+    client = get_object_or_404(Client, pk=client_pk)
+
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save()
+            # po išsaugojimo – grįžtam į to projekto kliento puslapį
+            return redirect("client_detail", pk=project.client.pk)
+    else:
+        # iš anksto parenkam klientą formoje
+        form = ProjectForm(initial={"client": client})
+
+    context = {
+        "form": form,
+        "client": client,
+    }
+    return render(request, "projects/project_form.html", context)
 
