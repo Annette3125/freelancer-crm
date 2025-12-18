@@ -82,3 +82,22 @@ def client_update(request, pk):
         form = ClientForm(instance=client)
 
     return render(request, "clients/client_form.html", {"form": form})
+
+
+def project_update(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+
+    if request.method == "POST":
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            # grįžtam į to projekto kliento puslapį
+            return redirect("client_detail", pk=project.client.pk)
+    else:
+        form = ProjectForm(instance=project)
+
+    context = {
+        "form": form,
+        "project": project,
+    }
+    return render(request, "projects/project_form.html", context)
