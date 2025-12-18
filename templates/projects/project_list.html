@@ -16,6 +16,7 @@
             <th>Status</th>
             <th>Budget</th>
             <th>Created</th>
+            <th>Actions</th>
         </tr>
         {% for project in projects %}
         <tr>
@@ -34,10 +35,15 @@
                 {% endif %}
             </td>
             <td>{{ project.created_at|date:"Y-m-d" }}</td>
+
+         <td>
+            <a href="{% url 'project_update' project.pk %}">✏️ Edit</a>
+        </td>
+
         </tr>
         {% empty %}
         <tr>
-            <td colspan="5">No projects yet.</td>
+            <td colspan="6">No projects yet.</td>
         </tr>
         {% endfor %}
     </table>
