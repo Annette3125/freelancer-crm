@@ -48,6 +48,13 @@
                 {% if project.budget %}
                     – Budget: {{ project.budget }}
                 {% endif %}
+
+                 {% if project.description %}
+                <br>
+                <em>{{ project.description }}</em>
+            {% endif %}
+
+
             </li>
         {% endfor %}
         </ul>
