@@ -69,3 +69,16 @@ def project_create_for_client(request, client_pk):
     }
     return render(request, "projects/project_form.html", context)
 
+
+def client_update(request, pk):
+    client = get_object_or_404(Client, pk=pk)
+
+    if request.method == "POST":
+        form = ClientForm(request.POST, instance=client)
+        if form.is_valid():
+            form.save()
+            return redirect("client_detail", pk=client.pk)
+    else:
+        form = ClientForm(instance=client)
+
+    return render(request, "clients/client_form.html", {"form": form})
