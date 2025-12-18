@@ -4,7 +4,11 @@
 
 {% block content %}
 
+
     <h1>{{ client.name }}</h1>
+<p>
+    <a href="{% url 'client_update' client.pk %}">✏️ Edit this client</a>
+</p>
 
     {% if client.avatar_url %}
         <img src="{{ client.avatar_url }}" alt="{{ client.name }}" width="120">
