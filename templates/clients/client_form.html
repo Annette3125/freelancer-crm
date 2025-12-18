@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}New Client{% endblock %}
+{% block title %}
+
+    {% if form.instance.pk %}
+        Edit Client
+    {% else %}
+        New Client
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-    <h2>New Client</h2>
+    <h2>
+        {% if form.instance.pk %}
+            Edit Client
+        {% else %}
+            New Client
+        {% endif %}
+    </h2>
 
     <form method="post">
         {% csrf_token %}
