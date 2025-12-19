@@ -101,3 +101,8 @@ def project_update(request, pk):
         "project": project,
     }
     return render(request, "projects/project_form.html", context)
+
+
+def home(request):
+    return render(request, "home.html")
+
