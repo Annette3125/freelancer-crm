@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Freelancer CRM – Home{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Freelancer CRM</h2>
+
+    <p>
+        This is a lightweight CRM for freelancers and solo developers to:
+    </p>
+
+    <ul>
+        <li>store client contacts and notes,</li>
+        <li>track project status and budgets,</li>
+        <li>see all projects per client in one place,</li>
+        <li>plan work and follow-ups more clearly.</li>
+    </ul>
+
+    <p>
+        Start by viewing your
+        <a href="{% url 'client_list' %}">clients</a>
+        or
+        <a href="{% url 'project_list' %}">projects</a>.
+    </p>
+{% endblock %}
