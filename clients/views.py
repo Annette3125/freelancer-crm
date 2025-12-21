@@ -7,8 +7,20 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 
 def client_list(request):
+    status = request.GET.get("status", "")
+
     clients = Client.objects.all().order_by("name")
-    return render(request, "clients/client_list.html", {"clients": clients})
+    if status:
+        clients = clients.filter(status=status)
+
+    context = {
+        "clients": clients,
+        "status": status,
+        "status_choices": Client.STATUS_CHOICES,
+        "total": clients.count(),
+    }
+
+    return render(request, "clients/client_list.html", context)
 
 
 def client_detail(request, pk):
@@ -105,4 +117,5 @@ def project_update(request, pk):
 
 def home(request):
     return render(request, "home.html")
+
 
