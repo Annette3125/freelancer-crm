@@ -7,17 +7,35 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 
 def client_list(request):
-    status = request.GET.get("status", "")
+    status = request.GET.get("status")
 
-    clients = Client.objects.all().order_by("name")
+    all_clients = Client.objects.all()
+
+    clients = all_clients.order_by("name")
     if status:
         clients = clients.filter(status=status)
+
+    total_all = all_clients.count()
+    total_filtered = clients.count()
+
+    lead_count = all_clients.filter(status="lead").count()
+    active_count = all_clients.filter(status="active").count()
+    paused_count = all_clients.filter(status="paused").count()
+    completed_count = all_clients.filter(status="completed").count()
 
     context = {
         "clients": clients,
         "status": status,
         "status_choices": Client.STATUS_CHOICES,
-        "total": clients.count(),
+
+        "total": total_filtered,
+
+        "total_all": total_all,
+
+        "lead_count": lead_count,
+        "active_count": active_count,
+        "paused_count": paused_count,
+        "completed_count": completed_count,
     }
 
     return render(request, "clients/client_list.html", context)
