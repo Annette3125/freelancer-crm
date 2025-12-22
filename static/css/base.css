@@ -146,3 +146,8 @@ tr:nth-child(even) td {
     font-size: 0.85rem;
     margin-left: 0.25rem;
 }
+
+input[type="date"] {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.9rem;
+}

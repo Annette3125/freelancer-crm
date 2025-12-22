@@ -32,4 +32,15 @@ class ProjectForm(forms.ModelForm):
             "start_date",
             "due_date",
         ]
-
+        widgets = {
+            "start_date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                }
+            ),
+            "due_date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                }
+            ),
+        }
