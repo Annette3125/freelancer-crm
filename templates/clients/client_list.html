@@ -54,7 +54,21 @@
 </td>
             <td>{{ client.company }}</td>
             <td>{{ client.country }}</td>
-            <td>{{ client.get_status_display }}</td>
+
+            <td>
+    {% if client.status == "lead" %}
+        <span class="status-badge status-lead">{{ client.get_status_display }}</span>
+    {% elif client.status == "active" %}
+        <span class="status-badge status-active">{{ client.get_status_display }}</span>
+    {% elif client.status == "paused" %}
+        <span class="status-badge status-paused">{{ client.get_status_display }}</span>
+    {% elif client.status == "completed" %}
+        <span class="status-badge status-completed">{{ client.get_status_display }}</span>
+    {% else %}
+        {{ client.get_status_display }}
+    {% endif %}
+</td>
+
             <td>{{ client.email }}</td>
         </tr>
         {% empty %}

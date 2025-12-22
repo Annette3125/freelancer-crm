@@ -26,7 +26,24 @@
                     {{ project.client.name }}
                 </a>
             </td>
-            <td>{{ project.get_status_display }}</td>
+
+
+            <td>
+    {% if project.status == "lead" %}
+        <span class="status-badge status-lead">{{ project.get_status_display }}</span>
+    {% elif project.status == "planned" %}
+        <span class="status-badge status-lead">{{ project.get_status_display }}</span>
+    {% elif project.status == "in_progress" %}
+        <span class="status-badge status-active">{{ project.get_status_display }}</span>
+    {% elif project.status == "paused" %}
+        <span class="status-badge status-paused">{{ project.get_status_display }}</span>
+    {% elif project.status == "completed" %}
+        <span class="status-badge status-completed">{{ project.get_status_display }}</span>
+    {% else %}
+        {{ project.get_status_display }}
+    {% endif %}
+</td>
+
             <td>
                 {% if project.budget %}
                     {{ project.budget }}
