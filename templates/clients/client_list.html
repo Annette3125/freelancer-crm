@@ -10,8 +10,19 @@
         <a href="{% url 'client_create' %}">+ New client</a>
     </p>
 
+    <p>
+        <strong>Summary (all clients):</strong>
+        Total: {{ total_all }} |
+        Lead: {{ lead_count }} |
+        Active: {{ active_count }} |
+        Paused: {{ paused_count }} |
+        Completed: {{ completed_count }}
+    </p>
 
-<p>Total: {{ total }} client{% if total != 1 %}s{% endif %}</p>
+    <p>
+        <strong>Currently shown:</strong> {{ total }} client{% if total != 1 %}s{% endif %}
+    </p>
+
 
 <form method="get">
     <label for="status-filter"><strong>Status filter:</strong></label>
