@@ -1,0 +1,148 @@
+/* Bendras puslapio stilius */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f7f7fb;
+    color: #222;
+}
+
+/* Viršutinė juosta */
+header {
+    padding: 1rem 2rem;
+    background: #111827;
+    color: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+/* Navigacija */
+nav a {
+    color: #e5e7eb;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-size: 0.95rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Pagrindinis turinys */
+main {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem 3rem;
+}
+
+/* Antraštės */
+main h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+main h2 {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+}
+
+/* Mygtuko tipo nuorodos */
+a.button-link {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    background: #2563eb;
+    color: #f9fafb;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+a.button-link:hover {
+    background: #1d4ed8;
+}
+
+/* Lentelės */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+th {
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:nth-child(even) td {
+    background: #f9fafb;
+}
+
+/* Mažas info blokas virš lentelės */
+.summary {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+/* Status ženkliukai */
+.status-badge {
+    display: inline-block;
+    padding: 0.15rem 0.4rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-lead {
+    background: #eef2ff;
+    color: #3730a3;
+}
+
+.status-active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-paused {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.status-completed {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+/* Filtras */
+.filter-form {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.filter-form select {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.9rem;
+}
+
+.filter-form button {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.85rem;
+    margin-left: 0.25rem;
+}
