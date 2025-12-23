@@ -208,9 +208,9 @@ Not production-ready without further hardening and security review.
 
 ## About me
 
-I enjoy building small backend tools with Python and Django.
+I enjoy building backend tools with Python and Django.
 I like taking the time to understand how things work under the hood
-and using small projects like this one 🌍🪽🌱.
+and using projects like this one 🌍🪽🌱.
 
 ******
 ******
