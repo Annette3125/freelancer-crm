@@ -105,19 +105,22 @@ If you prefer to run Django directly on your machine.
 
 From the project root:
 
-	•	Linux/macOS:
+Linux/macOS:
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-	•	Windows (PowerShell):
+Windows (PowerShell):
+
 ```bash
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 ```
 
-	•	Windows (CMD):
+Windows (CMD):
+
 ```bash
 python -m venv venv
 venv\Scripts\activate.bat
