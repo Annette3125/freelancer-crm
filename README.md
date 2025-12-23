@@ -1,4 +1,4 @@
-# Freelancer CRM
+# Clients & Projects
 
 Small Django project to manage freelance clients, projects and tasks.
 (REST API with Django REST Framework is planned.)

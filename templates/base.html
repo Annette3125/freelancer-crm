@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Freelancer CRM{% endblock %}</title>
+    <title>{% block title %}Clients & Projects{% endblock %}</title>
 
       <!-- Bootstrap CSS (for crispy bootstrap5) -->
     <link
@@ -18,7 +18,8 @@
 </head>
 <body>
     <header>
-        <h1><a href="{% url 'home' %}">Freelancer CRM</a></h1>
+        <h1><a href="{% url 'home' %}">Clients & Projects</a></h1>
+        <p class="subtitle">CRM for freelancers</p>
         <nav>
             <a href="{% url 'client_list' %}">Clients</a> |
             <a href="{% url 'project_list' %}">Projects</a>
