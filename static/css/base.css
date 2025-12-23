@@ -151,3 +151,10 @@ input[type="date"] {
     padding: 0.2rem 0.4rem;
     font-size: 0.9rem;
 }
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: -0.3rem;
+    margin-bottom: 0.5rem;
+}
