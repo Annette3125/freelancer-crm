@@ -17,14 +17,17 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    <header>
-        <h1><a href="{% url 'home' %}">Clients & Projects</a></h1>
-        <p class="subtitle">CRM for freelancers</p>
-        <nav>
-            <a href="{% url 'client_list' %}">Clients</a> |
-            <a href="{% url 'project_list' %}">Projects</a>
-        </nav>
-        <hr>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand">
+                <a href="{% url 'home' %}" class="brand-title">Clients &amp; Projects</a>
+                <p class="brand-subtitle">CRM for freelancers</p>
+            </div>
+            <nav class="main-nav">
+                <a href="{% url 'client_list' %}">Clients</a>
+                <a href="{% url 'project_list' %}">Projects</a>
+            </nav>
+        </div>
     </header>
 
     <main>
