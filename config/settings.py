@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
 
     # 3 rd party
-
+    "rest_framework",
 
     # local apps
     "clients",
