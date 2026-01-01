@@ -19,9 +19,28 @@ from django.contrib import admin
 from django.urls import path, include
 from clients import views as client_views
 
+from clients.api import (
+    ClientListCreateAPIView,
+    ClientRetrieveUpdateDestroyAPIView,
+    ProjectListCreateAPIView,
+    ProjectRetrieveUpdateDestroyAPIView,
+)
+
 urlpatterns = [
     path("", client_views.home, name="home"),
     path("admin/", admin.site.urls),
     path("clients/", include("clients.urls")),
-
+    # --- API ---
+    path("api/clients/", ClientListCreateAPIView.as_view(), name="api_client_list"),
+    path(
+        "api/clients/<int:pk>/",
+        ClientRetrieveUpdateDestroyAPIView.as_view(),
+        name="api_client_detail",
+    ),
+    path("api/projects/", ProjectListCreateAPIView.as_view(), name="api_project_list"),
+    path(
+        "api/projects/<int:pk>/",
+        ProjectRetrieveUpdateDestroyAPIView.as_view(),
+        name="api_project_detail",
+    ),
 ]
