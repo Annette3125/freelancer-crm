@@ -6,6 +6,15 @@ class ClientListCreateAPIView(generics.ListCreateAPIView):
     queryset = Client.objects.all().order_by("name")
     serializer_class = ClientSerializer
 
+    def gwt_queryset(self):
+        qs = super().get_queryset()
+        status = self.request.query_params.get("status")
+
+        if status:
+            qs = qs.filter(status=status)
+
+        return qs
+
 class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
