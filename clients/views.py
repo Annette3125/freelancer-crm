@@ -2,10 +2,12 @@
 from .models import Client, Project
 from .forms import ClientForm, ProjectForm
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
-
+@login_required
 def client_list(request):
     status = request.GET.get("status")
 
@@ -40,7 +42,7 @@ def client_list(request):
 
     return render(request, "clients/client_list.html", context)
 
-
+@login_required
 def client_detail(request, pk):
     client = get_object_or_404(Client, pk=pk)
     projects = client.projects.all().order_by("-created_at")
@@ -50,11 +52,13 @@ def client_detail(request, pk):
     }
     return render(request, "clients/client_detail.html", context)
 
+@login_required
 def project_list(request):
     # select related
     projects = Project.objects.select_related("client").order_by("-created_at")
     return render(request, "projects/project_list.html", {"projects": projects})
 
+@login_required
 def client_create(request):
     if request.method == "POST":
         form = ClientForm(request.POST)
@@ -66,7 +70,7 @@ def client_create(request):
 
     return render(request, "clients/client_form.html", {"form": form})
 
-
+@login_required
 def project_create(request):
     if request.method == "POST":
         form = ProjectForm(request.POST)
@@ -79,7 +83,7 @@ def project_create(request):
 
     return render(request, "projects/project_form.html", {"form": form})
 
-
+@login_required
 def project_create_for_client(request, client_pk):
     client = get_object_or_404(Client, pk=client_pk)
 
@@ -99,7 +103,7 @@ def project_create_for_client(request, client_pk):
     }
     return render(request, "projects/project_form.html", context)
 
-
+@login_required
 def client_update(request, pk):
     client = get_object_or_404(Client, pk=pk)
 
@@ -113,7 +117,7 @@ def client_update(request, pk):
 
     return render(request, "clients/client_form.html", {"form": form})
 
-
+@login_required
 def project_update(request, pk):
     project = get_object_or_404(Project, pk=pk)
 
