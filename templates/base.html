@@ -27,7 +27,21 @@
                 <a href="{% url 'client_list' %}">Clients</a>
                 <a href="{% url 'project_list' %}">Projects</a>
             </nav>
+
+
+            <div class="site-header__auth">
+            {% if user.is_authenticated %}
+                <span class="site-header__user">
+                    👋 {{ user.username }}
+                </span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
         </div>
+
+        </div>
+        <hr>
     </header>
 
     <main>
