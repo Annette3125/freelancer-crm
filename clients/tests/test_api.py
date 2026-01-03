@@ -26,7 +26,7 @@ class ClientAPITests(APITestCase):
         )
 
     def test_list_returns_all_clients_without_filter(self):
-        url = reverse("api_client_list")  # tas pats name, kurį dėjom urls.py
+        url = reverse("api_client_list")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
