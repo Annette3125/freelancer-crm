@@ -32,3 +32,29 @@ class ClientAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 3)
 
+    def test_list_filters_by_status_active(self):
+        url = reverse("api_client_list")
+        response = self.client.get(url, {"status": "active"})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # only one active
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]["email"], "active@example.com")
+
+    def test_list_filters_by_status_lead(self):
+        url = reverse("api_client_list")
+        response = self.client.get(url, {"status": "lead"})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]["email"], "lead@example.com")
+
+    def test_list_with_unknown_status_returns_empty_list(self):
+        url = reverse("api_client_list")
+        response = self.client.get(url, {"status": "does-not-exist"})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
+
+
+
