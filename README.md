@@ -1,16 +1,18 @@
 # Clients & Projects
 
 Small Django project to manage freelance clients, projects and tasks.
-(REST API with Django REST Framework is planned.)
+Includes a small REST API built with Django REST Framework.
 ___
 
 ## 🌟 Tech Stack
 
 - **Backend:** Django (Python)
+- **API:** Django REST Framework (clients & projects endpoints)
 - **Templating:** Django templates (HTML)
 - **Database:** SQLite by default (PostgreSQL planned via Docker)
 - **Containerization:** Docker, docker-compose
 - **Forms:** Django `ModelForm` (create/update flows)
+- **Testing:** Django `TestCase` + DRF `APITestCase`
 - **Styling / JS:** Basic HTML; Bootstrap / JS planned
 
 ___
@@ -161,6 +163,24 @@ python manage.py runserver 8002
 Open:
 	•	http://127.0.0.1:8002/
 
+## ✅ Tests
+
+This project includes a small but growing test suite:
+
+- Django `TestCase` for core models (Client, Project)
+- DRF `APITestCase` for API endpoints (`/api/clients/`, `/api/projects/`)
+
+Run tests in Docker (recommended):
+
+```bash
+docker compose exec web python manage.py test
+```
+
+If you run the project without Docker, you can use:
+
+```bash
+python manage.py test
+```
 
 ## 🌟 Features
 
@@ -194,11 +214,11 @@ This project is actively evolving — I’m extending it step-by-step with new f
 
 ### 🔭 Planned / Next Steps
 
-- Django REST Framework (DRF) API endpoints for clients and projects  
-- Switch to PostgreSQL in Docker setup  
+- Switch to PostgreSQL in Docker setup
+- Add authentication/permissions for the API  
 - Frontend improvements with Bootstrap / Tailwind and basic JavaScript  
-- Simple filters (e.g. by status) and small dashboard counters  
-- Basic tests (views, models, forms)
+- Extend test coverage (more views, forms and API cases)  
+
 
 ---
 
