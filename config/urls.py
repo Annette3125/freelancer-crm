@@ -39,6 +39,8 @@ urlpatterns = [
     ),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 
+    path("signup/", client_views.signup, name="signup"),
+
     path("clients/", include("clients.urls")),
 
     # --- API ---
