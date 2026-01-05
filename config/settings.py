@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "rest_framework",
 
     # local apps
-    "clients",
+    "clients.apps.ClientsConfig",
 ]
 
 MIDDLEWARE = [
