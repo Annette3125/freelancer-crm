@@ -57,9 +57,28 @@ def client_detail(request, pk):
 
 @login_required
 def project_list(request):
-    # select related
-    projects = Project.objects.select_related("client").order_by("-created_at")
-    return render(request, "projects/project_list.html", {"projects": projects})
+    status = request.GET.get("status")
+
+    # all projects (all statistics)
+    all_projects = Project.objects.select_related("client")
+
+    # use filter, if status is chosen
+    if status:
+        projects = all_projects.filter(status=status)
+    else:
+        projects = all_projects
+
+    projects = projects.order_by("-created_at")
+
+    context = {
+        "projects": projects,
+        "status": status,
+        "status_choices": Project.STATUS_CHOICES,
+        "total_all": all_projects.count(),
+        "total_filtered": projects.count(),
+    }
+    return render(request, "projects/project_list.html", context)
+
 
 @login_required
 def client_create(request):

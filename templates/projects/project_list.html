@@ -9,6 +9,27 @@
 <p>
     <a href="{% url 'project_create' %}">+ New project</a>
 </p>
+
+
+    <p>
+        Total: {{ total_filtered }} of {{ total_all }} project{% if total_filtered != 1 %}s{% endif %}
+    </p>
+
+    <form method="get">
+        <label for="status-filter"><strong>Status filter:</strong></label>
+        <select name="status" id="status-filter">
+            <option value="">All statuses</option>
+            {% for value, label in status_choices %}
+                <option value="{{ value }}"{% if value == status %} selected{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+
+    <hr>
+
     <table border="1">
         <tr>
             <th>Title</th>
