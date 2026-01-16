@@ -42,20 +42,24 @@
     {% if projects %}
         <ul>
         {% for project in projects %}
-            <li>
-                <strong>{{ project.title }}</strong>
-                ({{ project.get_status_display }})
-                {% if project.budget %}
-                    – Budget: {{ project.budget }}
-                {% endif %}
+      <li>
+            <strong>{{ project.title }}</strong>
+            ({{ project.get_status_display }})
+            {% if project.budget %}
+                – Budget: {{ project.budget }}
+            {% endif %}
 
-                 {% if project.description %}
+            {% if project.summary %}
+                <br>
+                <span class="project-summary-label">AI summary:</span>
+                <span class="project-summary">{{ project.summary }}</span>
+            {% endif %}
+
+            {% if project.description %}
                 <br>
                 <em>{{ project.description }}</em>
             {% endif %}
-
-
-            </li>
+        </li>
         {% endfor %}
         </ul>
     {% else %}

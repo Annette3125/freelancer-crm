@@ -201,3 +201,14 @@ input[type="date"] {
 .main-nav a:hover {
     text-decoration: underline;
 }
+
+.project-summary-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #6b7280; /* švelni pilka */
+}
+
+.project-summary {
+    font-size: 0.85rem;
+    color: #4b5563;
+}
