@@ -40,6 +40,11 @@
 
 <hr>
 
+<p>
+    <label for="client-search"><strong>Search:</strong></label>
+    <input type="text" id="client-search" placeholder="Type name, company or email">
+</p>
+
 <table border="1">
         <tr>
             <th>Name</th>
@@ -82,5 +87,6 @@
 
 {% block extra_js %}
     <script src="{% static 'js/client_filters.js' %}"></script>
+    <script src="{% static 'js/client_search.js' %}"></script>
 
 {% endblock %}
