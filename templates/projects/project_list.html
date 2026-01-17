@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Projects{% endblock %}
 
 {% block content %}
@@ -29,6 +31,15 @@
     </form>
 
     <hr>
+
+<p>
+    <label for="project-search"><strong>Search projects:</strong></label>
+    <input
+        type="text"
+        id="project-search"
+        placeholder="Type to filter by title or client..."
+    >
+</p>
 
     <table border="1">
         <tr>
@@ -94,4 +105,11 @@
     </table>
 
     <p><a href="{% url 'client_list' %}">← Back to clients</a></p>
+{% endblock %}
+
+
+{% block extra_js %}
+    <script src="{% static 'js/project_filters.js' %}"></script>
+
+
 {% endblock %}
