@@ -1,7 +1,11 @@
 # Clients & Projects
 
 Small Django project to manage freelance clients, projects and tasks.
-Includes a small REST API built with Django REST Framework.
+
+Includes:
+- HTML UI for daily use (clients & projects).
+- REST API endpoints (Django REST Framework).
+- Optional AI-generated project summaries (via OpenAI API or local fallback).
 ___
 
 ## 🌟 Tech Stack
@@ -11,9 +15,11 @@ ___
 - **Templating:** Django templates (HTML)
 - **Database:** SQLite by default (PostgreSQL planned via Docker)
 - **Containerization:** Docker, docker-compose
-- **Forms:** Django `ModelForm` (create/update flows)
+- **Forms:** Django `ModelForm` + crispy-forms
 - **Testing:** Django `TestCase` + DRF `APITestCase`
-- **Styling / JS:** Basic HTML; Bootstrap / JS planned
+- **Styling / JS:**
+  - custom CSS,
+  - small vanilla JS helpers (live search, AI summary toggle).
 
 ___
 
@@ -146,12 +152,16 @@ pip install -r requirements.txt
 cp .env.sample .env
 ```
 
+The values in .env.sample are only examples, not real secrets.
+
 Edit .env:
 ```bash
 DJANGO_SECRET_KEY=your-very-secret-key-here
 DEBUG=True
+# Optional: OpenAI API key for AI project summaries
+OPENAI_API_KEY=
 ```
-||| The values in .env.sample are only examples, not real secrets.
+
 
 
 5. Apply migrations and run the server
@@ -182,6 +192,17 @@ If you run the project without Docker, you can use:
 python manage.py test
 ```
 
+AI summaries (optional):
+
+- If you set `OPENAI_API_KEY` in `.env`, the management command  
+  `docker compose exec web python manage.py generate_project_summaries`  
+  will use OpenAI to generate short summaries.
+
+- If `OPENAI_API_KEY` is not set or something goes wrong,
+  the app falls back to a simple truncated description
+  and the UI still works.
+
+
 ## 🌟 Features
 
 - **Clients management**
@@ -192,13 +213,24 @@ python manage.py test
 
 - **Projects management**
   - Create projects and link them to clients
-  - Track project status (Lead / Planned / In progress / Completed)
-  - Store budget, description, important notes
+  - Track project status (Lead / Planned / In progress / Paused / Completed)
+  - Store budget, description, AI summary
   - See all projects for a specific client
+
+- **Smart status automation**
+  - `post_save` signal updates client status based on project statuses
+  - e.g. if any project is active → client becomes “Active”
 
 - **Clean relationships**
   - `Client` ↔ `Project` via `ForeignKey`
   - Reverse access: `client.projects.all()` using `related_name`
+
+
+- **REST API**
+  - `/api/clients/` – list & create clients
+  - `/api/clients/<id>/` – retrieve / update / delete client
+  - `/api/projects/` – list & create projects
+  - `/api/projects/<id>/` – retrieve / update / delete project
 
 - **Basic UI**
   - HTML templates with inheritance (`base.html`)
@@ -209,16 +241,38 @@ python manage.py test
   - Application runs inside a Docker container
   - Easy to start and stop locally
 
+- **AI summaries (optional)**
+  - Management command `generate_project_summaries`
+  - If `OPENAI_API_KEY` is set – uses OpenAI to generate a short summary
+  - If not – falls back to a truncated description (no external calls)
+
+- **UI & JS**
+  - Clients & projects tables with status badges
+  - Live search:
+    - client list (filters as you type),
+    - project list (by title or client name)
+  - Toggle „Show AI summaries“ on the projects page
+
+- **Auth**
+  - Sign up, login, logout
+  - Only authenticated users can manage clients & projects (login_required 🎯)
+
 This project is actively evolving — I’m extending it step-by-step with new features, tests and JS.
 
 
 ### 🔭 Planned / Next Steps
 
-- Switch to PostgreSQL in Docker setup
-- Add authentication/permissions for the API  
-- Frontend improvements with Bootstrap / Tailwind and basic JavaScript  
-- Extend test coverage (more views, forms and API cases)  
-
+- **API auth & permissions**
+  - protect DRF endpoints (token or session-based auth)
+- **Database**
+  - optional switch to PostgreSQL in Docker setup
+- **Frontend polish**
+  - nicer layout (Bootstrap / Tailwind),
+  - responsive layout for mobile screens
+- **Tests**
+  - extend coverage (more views, forms and API cases)
+- **AI layer**
+  - additional AI helpers (e.g. summary improvements, client notes suggestions)
 
 ---
 
