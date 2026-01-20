@@ -212,3 +212,21 @@ input[type="date"] {
     font-size: 0.85rem;
     color: #4b5563;
 }
+
+
+.summary-toggle {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.project-summary-block {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: #4b5563; /* švelniai pilka */
+}
+
+.project-summary-label {
+    font-weight: 600;
+    margin-right: 0.25rem;
+}
+

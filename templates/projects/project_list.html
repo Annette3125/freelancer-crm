@@ -41,7 +41,20 @@
     >
 </p>
 
-    <table border="1">
+
+    {% if projects %}
+        <div class="summary-toggle">
+            <label>
+                <input type="checkbox" id="toggle-summaries" checked>
+                Show AI summaries
+            </label>
+        </div>
+    {% endif %}
+
+    <hr>
+
+
+    <table id="projects-table" border="1">
         <tr>
             <th>Title</th>
             <th>Client</th>
@@ -54,12 +67,14 @@
         <tr>
 
             <td>
-            {{ project.title }}<br>
-            {% if project.summary %}
-                <span class="project-summary-label">AI summary:</span>
-                <span class="project-summary">{{ project.summary }}</span>
-            {% endif %}
-        </td>
+                {{ project.title }}<br>
+                {% if project.summary %}
+                    <div class="project-summary-block">
+                        <span class="project-summary-label">AI summary:</span>
+                        <span class="project-summary">{{ project.summary }}</span>
+                    </div>
+                {% endif %}
+            </td>
             <td>
                 <a href="{% url 'client_detail' project.client.pk %}">
                     {{ project.client.name }}
