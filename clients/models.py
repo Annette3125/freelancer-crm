@@ -32,6 +32,10 @@ class Client(models.Model):
     def __str__(self):
         return f"{self.name} {self.email}"
 
+    class Meta:
+        ordering = ["status", "country", "name", "-created_at"]
+
+
 class Project(models.Model):
     STATUS_CHOICES = [
         ("planned", "Planned"),
@@ -55,5 +59,8 @@ class Project(models.Model):
 
     def __str__(self):
         return f"{self.title} for {self.client.name}"
+
+    class Meta:
+        ordering = ["-created_at"]
 
 
