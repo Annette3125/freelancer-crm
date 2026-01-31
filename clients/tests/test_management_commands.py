@@ -1,8 +1,17 @@
+"""
+Tests for the `generate_project_summaries` management command.
+Use Arrange–Act–Assert pattern in each test.
+"""
+from io import StringIO
+
 from django.core.management import call_command
 from django.test import TestCase
 
 from clients.models import Client, Project
 
+
+out = StringIO()
+call_command("generate_project_summaries", stdout=out)
 
 class GenerateProjectSummariesCommandTests(TestCase):
     def test_generate_project_summaries_fills_empty_summary(self):
@@ -24,7 +33,8 @@ class GenerateProjectSummariesCommandTests(TestCase):
         self.assertEqual(project.summary, "")
 
         # Act: run the management command
-        call_command("generate_project_summaries")
+        out = StringIO()
+        call_command("generate_project_summaries", stdout=out)
 
         # Assert: summary was generated and stored
         project.refresh_from_db()
@@ -48,8 +58,9 @@ class GenerateProjectSummariesCommandTests(TestCase):
             summary="Custom summary that should stay.",
         )
 
-        # Act: run the command
-        call_command("generate_project_summaries")
+        #  Act: run the command with captured output
+        out = StringIO()
+        call_command("generate_project_summaries", stdout=out)
 
         # Assert: summary was not overridden
         project.refresh_from_db()
