@@ -230,3 +230,65 @@ input[type="date"] {
     margin-right: 0.25rem;
 }
 
+
+/* === Forms / cards === */
+
+.form-card {
+    max-width: 640px;
+    margin: 2.5rem auto;
+    padding: 1.75rem 2rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    border: 1px solid #e5e7eb;
+}
+
+.form-title {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+/* Buttons */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.btn-primary {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}

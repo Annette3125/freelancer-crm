@@ -6,12 +6,15 @@
     {% if form.instance.pk %}
         Edit project – Clients &amp; Projects
     {% else %}
-        New Project
+        New project – Clients &amp; Projects
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    <h2>
+
+
+  <div class="form-card">
+      <h2 class="form-title">
         {% if form.instance.pk %}
             Edit Project
         {% else %}
@@ -19,13 +22,24 @@
         {% endif %}
     </h2>
 
-    <form method="post">
-        {% csrf_token %}
-         {{ form|crispy }}
-        <button type="submit">Save</button>
-    </form>
+   <form method="post" novalidate>
+          {% csrf_token %}
+          {{ form|crispy }}
 
-    <p>
-        <a href="{% url 'project_list' %}">← Back to projects</a>
-    </p>
+          <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                  {% if form.instance.pk %}
+                      Save changes
+                  {% else %}
+                      Create project
+                  {% endif %}
+              </button>
+
+              <a href="{% url 'project_list' %}" class="btn btn-secondary">
+                  Cancel
+              </a>
+          </div>
+      </form>
+  </div>
+
 {% endblock %}
