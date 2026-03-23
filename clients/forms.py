@@ -44,3 +44,8 @@ class ProjectForm(forms.ModelForm):
                 }
             ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["client"].label_from_instance = lambda obj: obj.name
+
