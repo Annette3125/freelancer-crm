@@ -365,3 +365,7 @@ input[type="date"] {
 .crm-table tr:hover td {
     background: #fafcff;
 }
+
+.crm-table td:nth-child(5) {
+    white-space: nowrap;
+}
