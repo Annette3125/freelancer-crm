@@ -205,7 +205,8 @@ input[type="date"] {
 .project-summary-label {
     font-weight: 600;
     font-size: 0.85rem;
-    color: #6b7280; /* švelni pilka */
+    color: #6b7280;
+    margin-right: 0.25rem;
 }
 
 .project-summary {
@@ -225,10 +226,6 @@ input[type="date"] {
     color: #4b5563; /* švelniai pilka */
 }
 
-.project-summary-label {
-    font-weight: 600;
-    margin-right: 0.25rem;
-}
 
 
 /* === Forms / cards === */
@@ -291,4 +288,80 @@ input[type="date"] {
 
 .btn-secondary:hover {
     background: #e5e7eb;
+}
+
+
+/* === Page subtitle === */
+
+.page-subtitle {
+    margin-top: -0.25rem;
+    margin-bottom: 1rem;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+/* === Dashboard stats === */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0 1.5rem;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.9rem;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 0.35rem;
+}
+
+.stat-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* === Table card === */
+
+.table-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.crm-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.crm-table th,
+.crm-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eef2f7;
+    vertical-align: top;
+}
+
+.crm-table th {
+    background: #f8fafc;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #6b7280;
+}
+
+.crm-table tr:hover td {
+    background: #fafcff;
 }

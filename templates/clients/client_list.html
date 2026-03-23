@@ -7,18 +7,39 @@
 
     <h1>Clients</h1>
 
+    <p class="page-subtitle">Manage clients, statuses and contact details in one place.</p>
+
     <p>
         <a href="{% url 'client_create' %}">+ New client</a>
     </p>
 
-    <p>
-        <strong>Summary (all clients):</strong>
-        Total: {{ total_all }} |
-        Lead: {{ lead_count }} |
-        Active: {{ active_count }} |
-        Paused: {{ paused_count }} |
-        Completed: {{ completed_count }}
-    </p>
+
+<div class="dashboard-stats">
+    <div class="stat-card">
+        <div class="stat-label">Total clients</div>
+        <div class="stat-value">{{ total_all }}</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">Lead</div>
+        <div class="stat-value">{{ lead_count }}</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">Active</div>
+        <div class="stat-value">{{ active_count }}</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">Paused</div>
+        <div class="stat-value">{{ paused_count }}</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">Completed</div>
+        <div class="stat-value">{{ completed_count }}</div>
+    </div>
+</div>
 
     <p>
         <strong>Currently shown:</strong> {{ total }} client{% if total != 1 %}s{% endif %}
@@ -44,12 +65,12 @@
     <label for="client-search"><strong>Search:</strong></label>
     <input type="text" id="client-search" placeholder="Type name, company or email">
 </p>
-
-<table border="1">
+<div class="table-card">
+    <table class="crm-table">
         <tr>
             <th>Name</th>
             <th>Company</th>
-            <th>Country ❤</th>
+            <th>Country</th>
             <th>Status</th>
             <th>Email</th>
         </tr>
@@ -83,6 +104,8 @@
         </tr>
         {% endfor %}
     </table>
+
+</div>
 {% endblock %}
 
 {% block extra_js %}
