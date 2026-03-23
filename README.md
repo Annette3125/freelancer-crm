@@ -1,12 +1,15 @@
 # Clients & Projects
 
-Small Django project to manage freelance clients, projects and tasks.
+A lightweight Django CRM for freelancers to manage clients, projects and tasks.
 
-Includes:
-- HTML UI for daily use (clients & projects).
-- REST API endpoints (Django REST Framework).
-- Optional AI-generated project summaries (via OpenAI API or local fallback).
-___
+### Highlights
+- Django web app with clean HTML UI
+- Django REST Framework API for clients and projects
+- Optional AI-generated project summaries
+- Dockerized local setup
+- Basic automated tests for models, API and management commands
+
+---
 
 ## 🌟 Tech Stack
 
@@ -16,12 +19,23 @@ ___
 - **Database:** SQLite by default (PostgreSQL planned via Docker)
 - **Containerization:** Docker, docker-compose
 - **Forms:** Django `ModelForm` + crispy-forms
-- **Testing:** Django `TestCase` + DRF `APITestCase`
+- **Testing:** Django `TestCase`, DRF `APITestCase`, management command tests
 - **Styling / JS:**
   - custom CSS,
-  - small vanilla JS helpers (live search, AI summary toggle).
+  - small vanilla JavaScript helpers (live search, AI summary toggle).
 
-___
+---
+
+## 📸 Screenshots
+
+### Clients dashboard
+![Clients dashboard](screenshots/clients-list.png)
+
+### Projects dashboard
+![Projects dashboard](screenshots/projects-list.png)
+
+### Project form
+![Project form](screenshots/project-form.png)
 
 ## ✅ Prerequisites
 
@@ -177,8 +191,9 @@ Open:
 
 This project includes a small but growing test suite:
 
-- Django `TestCase` for core models (Client, Project)
+- Django `TestCase` for core models (`Client`, `Project`)
 - DRF `APITestCase` for API endpoints (`/api/clients/`, `/api/projects/`)
+- Tests for the `generate_project_summaries` management command
 
 Run tests in Docker (recommended):
 
@@ -213,18 +228,17 @@ AI summaries (optional):
 
 - **Projects management**
   - Create projects and link them to clients
-  - Track project status (Lead / Planned / In progress / Paused / Completed)
+  - Track project status (Planned / In progress / On hold / Done)
   - Store budget, description, AI summary
   - See all projects for a specific client
 
 - **Smart status automation**
   - `post_save` signal updates client status based on project statuses
-  - e.g. if any project is active → client becomes “Active”
+  - e.g. if any project is active → client becomes "Active"
 
 - **Clean relationships**
   - `Client` ↔ `Project` via `ForeignKey`
   - Reverse access: `client.projects.all()` using `related_name`
-
 
 - **REST API**
   - `/api/clients/` – list & create clients
@@ -232,9 +246,10 @@ AI summaries (optional):
   - `/api/projects/` – list & create projects
   - `/api/projects/<id>/` – retrieve / update / delete project
 
-- **Basic UI**
+- **Web UI**
   - HTML templates with inheritance (`base.html`)
-  - Clients list, detail view, projects list
+  - Clients dashboard, client detail view, projects dashboard
+  - Styled forms for client and project create/update flows
   - Simple navigation between clients and projects
 
 - **Dockerized setup**
@@ -247,28 +262,28 @@ AI summaries (optional):
   - If not – falls back to a truncated description (no external calls)
 
 - **UI & JS**
+  - Dashboard-style clients and projects views with summary cards
   - Clients & projects tables with status badges
   - Live search:
-    - client list (filters as you type),
+    - client list (filters as you type)
     - project list (by title or client name)
-  - Toggle „Show AI summaries“ on the projects page
+  - Toggle "Show AI summaries" on the projects page
 
 - **Auth**
   - Sign up, login, logout
-  - Only authenticated users can manage clients & projects (login_required 🎯)
+  - Only authenticated users can manage clients & projects (`login_required`)
 
-This project is actively evolving — I’m extending it step-by-step with new features, tests and JS.
-
+This project is actively evolving — I’m extending it step by step with new features, tests and UI improvements.
 
 ### 🔭 Planned / Next Steps
 
 - **API auth & permissions**
-  - protect DRF endpoints (token or session-based auth)
+  - protect DRF endpoints (token- or session-based auth)
 - **Database**
   - optional switch to PostgreSQL in Docker setup
 - **Frontend polish**
-  - nicer layout (Bootstrap / Tailwind),
   - responsive layout for mobile screens
+  - additional UI refinements
 - **Tests**
   - extend coverage (more views, forms and API cases)
 - **AI layer**
@@ -278,16 +293,16 @@ This project is actively evolving — I’m extending it step-by-step with new f
 
 ##### Disclaimer
 
-This repository is part of my personal portfolio.
-It is intended for educational and demonstration purposes only.
+This repository is part of my personal portfolio.  
+It is intended for educational and demonstration purposes only.  
 Not production-ready without further hardening and security review.
 
 
 ## About me
 
-I enjoy building backend tools with Python and Django.
-I like taking the time to understand how things work under the hood
-and using projects like this one 🌍🪽🌱.
+I enjoy building backend tools with Python and Django.  
+I like taking the time to understand how things work under the hood  
+and to build projects like this one.
 
 ******
 ******
