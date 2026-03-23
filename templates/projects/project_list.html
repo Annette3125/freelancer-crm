@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block title %}Projects{% endblock %}
@@ -8,14 +7,23 @@
 
     <h1>Projects</h1>
 
-<p>
-    <a href="{% url 'project_create' %}">+ New project</a>
-</p>
-
+    <p class="page-subtitle">Manage projects, budgets and progress in one place.</p>
 
     <p>
-        Total: {{ total_filtered }} of {{ total_all }} project{% if total_filtered != 1 %}s{% endif %}
+        <a href="{% url 'project_create' %}">+ New project</a>
     </p>
+
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <div class="stat-label">Total projects</div>
+            <div class="stat-value">{{ total_all }}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Currently shown</div>
+            <div class="stat-value">{{ total_filtered }}</div>
+        </div>
+    </div>
 
     <form method="get">
         <label for="status-filter"><strong>Status filter:</strong></label>
@@ -32,15 +40,14 @@
 
     <hr>
 
-<p>
-    <label for="project-search"><strong>Search projects:</strong></label>
-    <input
-        type="text"
-        id="project-search"
-        placeholder="Type to filter by title or client..."
-    >
-</p>
-
+    <p>
+        <label for="project-search"><strong>Search projects:</strong></label>
+        <input
+            type="text"
+            id="project-search"
+            placeholder="Type to filter by title or client..."
+        >
+    </p>
 
     {% if projects %}
         <div class="summary-toggle">
@@ -53,78 +60,74 @@
 
     <hr>
 
+    <div class="table-card">
+        <table id="projects-table" class="crm-table">
+            <tr>
+                <th>Title</th>
+                <th>Client</th>
+                <th>Status</th>
+                <th>Budget</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+            {% for project in projects %}
+            <tr>
+                <td>
+                    {{ project.title }}<br>
+                    {% if project.summary %}
+                        <div class="project-summary-block">
+                            <span class="project-summary-label">AI summary:</span>
+                            <span class="project-summary">{{ project.summary }}</span>
+                        </div>
+                    {% endif %}
+                </td>
 
-    <table id="projects-table" border="1">
-        <tr>
-            <th>Title</th>
-            <th>Client</th>
-            <th>Status</th>
-            <th>Budget</th>
-            <th>Created</th>
-            <th>Actions</th>
-        </tr>
-        {% for project in projects %}
-        <tr>
+                <td>
+                    <a href="{% url 'client_detail' project.client.pk %}">
+                        {{ project.client.name }}
+                    </a>
+                </td>
 
-            <td>
-                {{ project.title }}<br>
-                {% if project.summary %}
-                    <div class="project-summary-block">
-                        <span class="project-summary-label">AI summary:</span>
-                        <span class="project-summary">{{ project.summary }}</span>
-                    </div>
-                {% endif %}
-            </td>
-            <td>
-                <a href="{% url 'client_detail' project.client.pk %}">
-                    {{ project.client.name }}
-                </a>
-            </td>
+                <td>
+                    {% if project.status == "planned" %}
+                        <span class="status-badge status-lead">{{ project.get_status_display }}</span>
+                    {% elif project.status == "in_progress" %}
+                        <span class="status-badge status-active">{{ project.get_status_display }}</span>
+                    {% elif project.status == "on_hold" %}
+                        <span class="status-badge status-paused">{{ project.get_status_display }}</span>
+                    {% elif project.status == "done" %}
+                        <span class="status-badge status-completed">{{ project.get_status_display }}</span>
+                    {% else %}
+                        {{ project.get_status_display }}
+                    {% endif %}
+                </td>
 
+                <td>
+                    {% if project.budget %}
+                        {{ project.budget }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
 
-            <td>
-    {% if project.status == "lead" %}
-        <span class="status-badge status-lead">{{ project.get_status_display }}</span>
-    {% elif project.status == "planned" %}
-        <span class="status-badge status-lead">{{ project.get_status_display }}</span>
-    {% elif project.status == "in_progress" %}
-        <span class="status-badge status-active">{{ project.get_status_display }}</span>
-    {% elif project.status == "paused" %}
-        <span class="status-badge status-paused">{{ project.get_status_display }}</span>
-    {% elif project.status == "completed" %}
-        <span class="status-badge status-completed">{{ project.get_status_display }}</span>
-    {% else %}
-        {{ project.get_status_display }}
-    {% endif %}
-</td>
+                <td>{{ project.created_at|date:"Y-m-d" }}</td>
 
-            <td>
-                {% if project.budget %}
-                    {{ project.budget }}
-                {% else %}
-                    -
-                {% endif %}
-            </td>
-            <td>{{ project.created_at|date:"Y-m-d" }}</td>
-
-         <td>
-            <a href="{% url 'project_update' project.pk %}">✏️ Edit</a>
-        </td>
-
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="6">No projects yet.</td>
-        </tr>
-        {% endfor %}
-    </table>
+                <td>
+                    <a href="{% url 'project_update' project.pk %}">✏️ Edit</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No projects yet.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
     <p><a href="{% url 'client_list' %}">← Back to clients</a></p>
-{% endblock %}
 
+{% endblock %}
 
 {% block extra_js %}
     <script src="{% static 'js/project_filters.js' %}"></script>
-
-
 {% endblock %}
