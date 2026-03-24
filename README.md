@@ -2,6 +2,21 @@
 
 A lightweight Django CRM for freelancers to manage clients, projects and tasks.
 
+
+## Quick start (Docker)
+
+```bash
+git clone https://github.com/Annette3125/freelancer-crm.git
+cd freelancer-crm
+cp .env.sample .env
+docker compose up --build
+docker compose exec web python manage.py migrate
+docker compose exec web python manage.py createsuperuser
+# open http://127.0.0.1:8002/
+```
+
+Demo data is not included. Create a superuser, then add sample clients/projects via the UI.
+
 ### Highlights
 - Django web app with clean HTML UI
 - Django REST Framework API for clients and projects
@@ -115,8 +130,6 @@ To stop the app:
 ```bash
 docker compose down
 ```
-ℹ️ For demo purposes, the repository may include a small SQLite database 
-(db.sqlite3) with sample clients and projects. If present, you’ll see example data right after starting the app.
 
 
 🧪 Option B – Run locally (without Docker)
